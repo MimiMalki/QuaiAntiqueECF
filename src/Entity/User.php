@@ -46,16 +46,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Allergie::class, mappedBy: 'user')]
     private Collection $allergies;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Resevation::class)]
-    private Collection $resevations;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reservation::class)]
     private Collection $reservations;
 
     public function __construct()
     {
         $this->allergies = new ArrayCollection();
-        $this->resevations = new ArrayCollection();
         $this->reservations = new ArrayCollection();
     }
 
@@ -204,37 +200,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Resevation>
-     */
-    public function getResevations(): Collection
-    {
-        return $this->resevations;
-    }
-
-    public function addResevation(Resevation $resevation): self
-    {
-        if (!$this->resevations->contains($resevation)) {
-            $this->resevations->add($resevation);
-            $resevation->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeResevation(Resevation $resevation): self
-    {
-        if ($this->resevations->removeElement($resevation)) {
-            // set the owning side to null (unless already changed)
-            if ($resevation->getUser() === $this) {
-                $resevation->setUser(null);
-            }
-        }
-
-        return $this;
    
-}
-
     /**
      * @return Collection<int, Reservation>
      */
