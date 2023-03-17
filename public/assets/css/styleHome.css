@@ -75,10 +75,11 @@
     position: absolute;
     bottom: 0;
     text-align: center;
-    background-color: var(--gray);
+    background-color: rgba(250, 247, 247, 0.494);
     left: 0;
     right: 0;
     color:var(--darck);
+    font-size: 30px;
     font-weight:bold;
     overflow: hidden;
     transition: top 0.5s;
