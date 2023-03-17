@@ -24,7 +24,15 @@ class ReservationType extends AbstractType
             'format' => 'yyyy-MM-dd',
             'data' => new \DateTime(),
         ])
-        ->add('time')
+        // ->add('time')
+        ->add('time', ChoiceType::class, [
+            'label' => 'un horaire',
+            'placeholder' => '',
+            'choices' => $this->getTime(),
+            'expanded' => false,
+            'multiple' => false,
+            // 'attr' => ['class' => ''],
+        ])
         ->add('numbre_of_people',IntegerType::class,  [
             'label' => 'Nombre de convives ',
             'required' => true,
@@ -45,27 +53,20 @@ class ReservationType extends AbstractType
         // ->add('allergie')
     ;
 }
-// ->add('time', ChoiceType::class, [
-        //     'label' => 'un horaire',
-        //     'placeholder' => '',
-        //     'choices' => $this->getTime(),
-        //     'expanded' => false,
-        //     'multiple' => false,
-        //     // 'attr' => ['class' => ''],
-        // ])
-    // private function getTime()
-    // {
-    //     $start = new \DateTime('12:00');
-    //     $end = new \DateTime('14:00');
-    //     $interval = new \DateInterval('PT15M');
-    //     $times = [];
-    //     $current = clone $start;
-    //     while ($current <= $end) {
-    //         $times[$current->format('H:i')] = $current->format('H:i');
-    //         $current->add($interval);
-    //     }
-    //     return $times;
-    // }
+
+    private function getTime()
+    {
+        $start = new \DateTime('12:00');
+        $end = new \DateTime('14:00');
+        $interval = new \DateInterval('PT15M');
+        $times = [];
+        $current = clone $start;
+        while ($current <= $end) {
+            $times[$current->format('H:i')] = $current->format('H:i');
+            $current->add($interval);
+        }
+        return $times;
+    }
 
     public function configureOptions(OptionsResolver $resolver): void
     {

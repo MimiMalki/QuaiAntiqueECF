@@ -76,7 +76,7 @@
 				<span class="title">Réservations</span>
 			</a>
 		</li>
-		{# <li class="nav-item {{ app.request.get('_route') == 'app_admin_horaire_index' ? 'active' : '' }}">
+		<li class="nav-item {{ app.request.get('_route') == 'app_admin_horaire_index' ? 'active' : '' }}">
 
 			<a href="{{ path('app_admin_horaire_index') }}">
 				<span class="icon">
@@ -84,7 +84,7 @@
 				</span>
 				<span class="title">Horaires</span>
 			</a>
-		</li> #}
+		</li>
 
 		<li class="nav-item {{ app.request.get('_route') == 'app_logout' ? 'active' : '' }}">
 			<a href="{{ path('app_logout') }}">
