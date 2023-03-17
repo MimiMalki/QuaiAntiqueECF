@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resevation{% endblock %}
+
+{% block body %}
+    <h1>Resevation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ resevation.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ resevation.date ? resevation.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{{ resevation.time }}</td>
+            </tr>
+            <tr>
+                <th>Numbre_of_people</th>
+                <td>{{ resevation.numbreOfPeople }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_resevation_index') }}">back to list</a>
+
+    <a href="{{ path('app_resevation_edit', {'id': resevation.id}) }}">edit</a>
+
+    {{ include('resevation/_delete_form.html.twig') }}
+{% endblock %}

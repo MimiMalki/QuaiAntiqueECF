@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/styleMenuCarte.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/styleUser.css') }}">
+{% endblock %}
+
+{% block body %}
+	<div class="container  blocGeneral ">
+		<div class="row text-center blocGeneral">
+			<div class="bloc1 col-6">
+				<h1 class="title">Les Menus</h1>
+				{% for menu in menus %}
+					<a href="{{ path('app_menu_show', {'id': menu.id}) }}">
+						<h4 class="text-center">
+							<strong>
+								{{ menu.title }}</strong>
+						</h4><br>
+					</a>
+				{% endfor %}
+			</div>
+			<div class="bloc2 col-6">
+				<div class="" {% for menu in menus %} id="{{ menu.id }}" {% endfor %}>
+					<h2>
+						<strong>
+							{{ menu.title }}</strong>
+					</h2>
+					<table class="table">
+						<tbody>
+							{% for formule in formules %}
+								<tr>
+									<td scope="row">
+										{{ formule.description|nl2br }}
+									</td>
+									<td scope="row">
+										{{ formule.price }}€
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

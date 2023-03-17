@@ -1,0 +1,52 @@
+<a class="navbar-brand m-auto" href="{{ path('homepage') }}"><img src={{asset('assets/images/logo/logoBlanc.png')}} class="brand-img" alt="" height="100px"></a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="mobileMenu">
+	<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+		{% if app.user %}
+			<li class="nav-item">
+				<span class="nav-link">Bienvenue
+					{{ app.user.firstname }}
+					{{ app.user.lastname }}</span>
+			</li>
+		{% endif %}
+		<li class="nav-item {{ app.request.get('_route') == 'home' ? 'active' : '' }}">
+			<a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
+		</li>
+		<li class="nav-item {{ app.request.get('_route') == 'app_category_index' ? 'active' : '' }}">
+			<a class="nav-link" href="{{ path('app_category_index') }}">Carte</a>
+		</li>
+		<li class="nav-item {{ app.request.get('_route') == 'app_menu_index' ? 'active' : '' }}">
+			<a class="nav-link" href="{{ path('app_menu_index') }}">Menu</a>
+		</li>
+		{% if app.user %}
+			<li class="nav-item {{ app.request.get('_route') == 'app_register' ? 'active' : '' }}">
+				<a class="nav-link" href="{{ path('app_reservation_index') }}">Mes réservations</a>
+			</li>
+		{% endif %}
+		{% if app.user %}
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion
+					<i class="fa fa-sign-out"></i>
+				</a>
+			</li>
+		{% else %}
+			<li class="nav-item {{ app.request.get('_route') == 'app_login' ? 'active' : '' }}">
+				<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+			</li>
+			<li class="nav-item {{ app.request.get('_route') == 'app_register' ? 'active' : '' }}">
+				<a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+			</li>
+		{% endif %}
+
+		<li class="nav-item {{ app.request.get('_route') == 'app_register' ? 'active' : '' }}">
+			<button class="type=" button"" href="{{ path('app_reservation_new') }}">
+				<a class="lien" href="{{ path('app_reservation_new') }}">Réserver</a>
+			</button>
+		</li>
+
+	</ul>
+
+</div>

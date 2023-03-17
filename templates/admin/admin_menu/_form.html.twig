@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+    
+    {{ form_label(form.title,"Titre ") }}
+	{{ form_widget(form.title,{'att':{'class':''}}) }}
+    <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+	<button class="btn btn-dark "><ion-icon name="create"></ion-icon>{{ button_label|default('Ajouter') }}</button>
+</div>
+{{ form_end(form) }}

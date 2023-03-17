@@ -1,0 +1,70 @@
+<!-- Footer des pages -->
+
+{# <footer class="bd-footer py-3 py-md-5 mt-5 bg-dark"> #}
+	<div class="container py-3 py-md-5 px-3 px-md-3">
+		<div class="row">
+
+			<div class="col-lg-4 mb-3 ">
+				<a class="navbar-brand m-auto" href="{{ path('homepage') }}"><img src={{asset('assets/images/logo/logoBlanc.png')}} class="brand-img" alt="" height="100px"></a>
+				<ul class="list-unstyled small text-muted st-et">
+					<li class="mb-2 st-et">Restaurant Gastronomique à Chambéry autour des produits frais et surtout haut savois ...</li>
+					<li class="mb-2 st-et">01 66 04 05 07
+					</li>
+					<li class="mb-2 st-et">contact@restaurantQuaiAntique.com</li>
+					<li class="mb-2 st-et"></li><br>
+					<li class="mb-2 st-et">Copyright © 2023 Restaurant Quai Antique</li>
+				</ul>
+			</div>
+
+			<div class="col-4 col-lg-4">
+				<h5>Nos horaires</h5>
+				<table class="table">
+					<tbody>
+						{% for horaire in horaires %}
+							<tr>
+								<td><strong>{{ horaire.day }}
+										</strong></td>
+								{% if horaire.closeM  %}
+									<td colspan="2">
+										<strong>Fermé
+										</strong>
+									</td>
+								{% else %}
+									<td>{{ horaire.timeStartM ? horaire.timeStartM|date('H:i') : '' }}</td>
+									<td>{{ horaire.timeEndM ? horaire.timeEndM|date('H:i') : '' }}</td>
+								{% endif %}
+
+								{% if horaire.closeN %}
+									<td colspan="2">
+										<strong>Fermé
+										</strong>
+									</td>
+								{% else %}
+									<td>{{ horaire.timeStartN ? horaire.timeStartN|date('H:i') : '' }}</td>
+									<td>{{ horaire.timeEndN ? horaire.timeEndN|date('H:i') : '' }}</td>
+								{% endif %}
+							</tr>
+						{% endfor %}
+					</tbody>
+				</tbody>
+			</table>
+		</div>
+
+
+		<div class="col-6 col-lg-2 mb-3">
+			<h5>Nos réseaux sociaux</h5>
+			<ul class="list-unstyled">
+				<li class="mb-2">
+					<a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+				</li>
+				<li class="mb-2">
+					<a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+				</li>
+				<li class="mb-2">
+					<a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+</div></footer>

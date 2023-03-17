@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Resevation{% endblock %}
+
+{% block body %}
+    <h1>Edit Resevation</h1>
+
+    {{ include('resevation/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_resevation_index') }}">back to list</a>
+
+    {{ include('resevation/_delete_form.html.twig') }}
+{% endblock %}

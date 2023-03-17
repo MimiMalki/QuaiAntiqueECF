@@ -1,0 +1,45 @@
+{% extends 'adminBase.html.twig' %}
+{% block title %}
+	<title>
+		Admin Galerie |Quai Antique</title>
+{% endblock %}
+
+{% block body %}
+	{% include "admin/_partials/_cards.html.twig" %}
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>
+						Image</strong>
+				</h2>
+				<a href="{{ path('app_images_index') }}" class="btn">Liste des images</a>
+				<a href="{{ path('app_images_new') }}" class="btn">Ajouter une image</a>
+			</div>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ image.id }}</td>
+					</tr>
+					<tr>
+						<th>Name</th>
+						<td>{{ image.name }}</td>
+					</tr>
+					<tr>
+						<th>FileName</th>
+						<td>{{ image.fileName }}</td>
+					</tr>
+					<tr>
+						<th>File</th>
+						<td><img src="{{ vich_uploader_asset(image, 'file') }}" alt="{{ image.fileName }}"></td>
+					</tr>
+					<tr>
+						<th>UpdatedAt</th>
+						<td>{{ image.updatedAt ? image.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

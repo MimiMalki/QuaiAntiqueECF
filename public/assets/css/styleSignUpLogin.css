@@ -1,0 +1,47 @@
+
+.form-signin{
+    margin-top: 11%;
+    padding-top: 2%;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.btn{
+    background:  var(--yellow);
+    border: 0.1em solid var(--yellow);
+    color: var(--white);
+    padding: 0.6em 2.4em;
+    text-transform: uppercase;
+    display: inline-block;
+    letter-spacing: .3em;
+    font-size: .8em;
+    font-weight: 400;
+    transition: .3s background-color ease-out, .3s color ease-out;
+    -webkit-transition: .3s background-color ease-out, .3s color ease-out;
+    cursor: pointer;
+    margin-bottom: 3%;
+} 
+.btn:hover {
+    color: var(--yellow);
+    text-decoration: none;
+    background:  var(--darck);
+    border: 0.1em solid var(--darck);
+}
+.fw-normal{ 
+    color: var(--yellow);
+    margin-top: 3%;
+    font-weight: 800!important;
+    font-size: -webkit-xxx-large;
+} 
+
+.esp {
+    margin-top: 3%;
+}
+
+form {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+h6 .lien{
+    color:var(--yellow);
+}

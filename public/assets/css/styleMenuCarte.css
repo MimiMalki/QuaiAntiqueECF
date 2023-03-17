@@ -1,0 +1,36 @@
+
+.bloc1{
+    margin-top: 3.5%;
+    display: flex;
+    flex-direction: column;
+    background-color:var(--darck);
+    padding-top: 2%;
+    padding-bottom: 2%;
+    
+}
+.bloc2{
+    margin-top: 3.5%;
+    background-color:var(--gray);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.row.text-center {
+    margin-top: 10%;
+}
+.lienShow {
+    color:var(--darck);
+    
+}
+.title{
+    color:var(--yellow);
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 63px;
+    text-transform: Uppercase;
+    letter-spacing: 5px;
+    height: 109px;
+    font-style: normal;
+}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Horaire index{% endblock %}
+
+{% block body %}
+    <h1>Horaire index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Day</th>
+                <th>TimeStartM</th>
+                <th>TimeEndM</th>
+                <th>TimeStartN</th>
+                <th>TimeEndN</th>
+                <th>CloseM</th>
+                <th>CloseN</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for horaire in horaires %}
+            <tr>
+                <td>{{ horaire.id }}</td>
+                <td>{{ horaire.day }}</td>
+                <td>{{ horaire.timeStartM ? horaire.timeStartM|date('H:i:s') : '' }}</td>
+                <td>{{ horaire.timeEndM ? horaire.timeEndM|date('H:i:s') : '' }}</td>
+                <td>{{ horaire.timeStartN ? horaire.timeStartN|date('H:i:s') : '' }}</td>
+                <td>{{ horaire.timeEndN ? horaire.timeEndN|date('H:i:s') : '' }}</td>
+                <td>{{ horaire.closeM ? 'Yes' : 'No' }}</td>
+                <td>{{ horaire.closeN ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_horaire_show', {'id': horaire.id}) }}">show</a>
+                    <a href="{{ path('app_horaire_edit', {'id': horaire.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_horaire_new') }}">Create new</a>
+{% endblock %}

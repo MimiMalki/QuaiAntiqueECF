@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu index
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/styleMenuCarte.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/styleUser.css') }}">
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row text-center">
+			<div class="bloc1 ">
+				<h1 class="title">Les Menus</h1>
+				<div>
+					{% for menu in menus %}
+						<a href="{{ path('app_menu_show', {'id': menu.id}) }}">
+							<h4 class="text-center">
+								<strong>
+									{{ menu.title }}</strong>
+							</h4><br>
+						</a>
+					{% endfor %}
+				</div>
+			</div>
+
+		</div>
+		<div class="d-grid gap-2 col-6 mx-auto text-center btn-lg">
+				<button type="button" href="{{ path('app_reservation_new') }}">
+					<a class="lien" href="{{ path('app_reservation_new') }}">Réserver
+					</button>
+				</div>
+			</div>
+	</div>
+
+{% endblock %}

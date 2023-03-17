@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+<div>
+	{{ form_label(form.day,'Le jour de la semaine') }}
+	{{ form_widget(form.day,{'att':{'class':''}}) }}
+</div>
+<div>
+	{{ form_label(form.timeStartM,"Heure d'ouverteur du matin") }}
+	{{ form_widget(form.timeStartM,{'att':{'class':''}}) }}
+</div>
+<div>
+	{{ form_label(form.timeEndM,'Heure de fermeture du matin') }}
+	{{ form_widget(form.timeEndM,{'att':{'class':''}}) }}
+</div>
+<div>
+	{{ form_label(form.timeStartN,"Heure d'ouverteur du soir") }}
+	{{ form_widget(form.timeStartN,{'att':{'class':''}}) }}
+</div>
+<div>
+	{{ form_label(form.timeEndN,'Heure de fermeture du soir') }}
+	{{ form_widget(form.timeEndN,{'att':{'class':''}}) }}
+</div>
+<div>
+	{{ form_widget(form.closeM, {'label': 'Fermé le matin ?'}) }}
+</div>
+<div>
+	{{ form_widget(form.closeN, {'label': 'Fermé le soir ?'}) }}
+</div>
+<br>
+<div class="d-grid gap-2 col-6 mx-auto">
+	<button class="btn btn-dark "><ion-icon name="create"></ion-icon>{{ button_label|default('Ajouter') }}</button>
+</div>
+{{ form_end(form) }}

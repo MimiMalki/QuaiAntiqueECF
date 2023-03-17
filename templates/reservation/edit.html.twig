@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes réservations
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/styleSignUpLogin.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/styleUser.css') }}">
+{% endblock %}
+
+{% block body %}
+	<main class="form-signin card shadow-sm  ">
+		<h1 class="h3 mb-3 fw-normal title text-center ">Modifier ma réservation
+		</h1>
+		{{ include('reservation/_form.html.twig', {'button_label': 'Modifier'}) }}
+		{# {{ include('reservation/_delete_form.html.twig') }} #}
+	{% endblock %}

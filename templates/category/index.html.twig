@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category index
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/styleMenuCarte.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/styleUser.css') }}">
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row text-center">
+			<div class="bloc1 ">
+				<h1 class="title">La carte</h1>
+				<div>
+					{% for category in categories %}
+						<a href="{{ path('app_category_show', {'id': category.id}) }}">
+							<h4 class="text-center">
+								<strong>
+									{{ category.label}}</strong>
+							</h4><br>
+						</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<div class="d-grid gap-2 col-6 mx-auto text-center btn-lg">
+				<button type="button" href="{{ path('app_reservation_new') }}">
+					<a class="lien" href="{{ path('app_reservation_new') }}">Réserver
+					</button>
+				</div>
+			</div>
+	</div>
+{% endblock %}

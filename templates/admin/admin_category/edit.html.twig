@@ -1,0 +1,19 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block body %}
+{% include "admin/_partials/_cards.html.twig" %}
+
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>
+						Modifier la categorie
+					</strong>
+				</h2>
+				<a href="{{ path('app_admin_category_index') }}" class="btn">Liste des categories</a>
+			</div>
+			{{ include('admin/admin_category/_form.html.twig' , {'button_label': 'Modifier'}) }}
+		{% endblock %}

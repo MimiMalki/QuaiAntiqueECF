@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carte
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/styleMenuCarte.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/styleUser.css') }}">
+{% endblock %}
+
+{% block body %}
+	<div class="container  blocGeneral ">
+		<div class="row text-center blocGeneral">
+			<div class="bloc1 col-6">
+				<h1 class="title">La carte</h1>
+				{% for category in categories %}
+					<a href="{{ path('app_category_show', {'id': category.id}) }}">
+						<h4 class="text-center">
+							<strong>
+								{{ category.label }}</strong>
+						</h4><br>
+					</a>
+				{% endfor %}
+			</div>
+			<div class="bloc2 col-6">
+				<div class="" {% for category in categories %} id="{{ category.id }}" {% endfor %}>
+					<h2>
+						<strong>
+							{{ category.label }}</strong>
+					</h2>
+					<table class="table">
+						<tbody>
+							{% for plat in plats %}
+								<tr>
+									<td scope="row">
+										{{  plat.title  }}
+									</td>
+									<td scope="row">
+										{{ plat.description|nl2br }}
+									</td>
+									<td scope="row">
+										{{ plat.price }}€
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

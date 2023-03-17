@@ -1,0 +1,24 @@
+{% extends "adminBase.html.twig" %}
+
+{% block title %}Liste des produits
+{% endblock %}
+
+{% block body %}
+
+	{% include "admin/_partials/_cards.html.twig" %}
+
+    <div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2><strong>Ajouter une categorie</strong></h2>
+				<a href="{{ path('app_admin_category_index') }}" class="btn">Liste des categories</a>
+			</div>
+    {{ include('admin/admin_category/_form.html.twig') }}
+
+{# {{ include('admin/admin_category/_form.html.twig') }} #}
+
+ 
+			</div>
+			
+    {# <a href="{{ path('app_admin_category_index') }}">back to list</a> #}
+{% endblock %}

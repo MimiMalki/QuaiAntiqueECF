@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formule{% endblock %}
+
+{% block body %}
+    <h1>Formule</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ formule.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ formule.description }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ formule.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_formule_index') }}">back to list</a>
+
+{% endblock %}

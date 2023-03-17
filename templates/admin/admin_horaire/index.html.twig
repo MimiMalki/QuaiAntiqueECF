@@ -1,0 +1,73 @@
+{% extends 'adminBase.html.twig' %}
+{% block title %}
+	<title>
+		Admin Horaires |Quai Antique</title>
+{% endblock %}
+
+{% block body %}
+{% include "admin/_partials/_cards.html.twig" %}
+<div class="detailss">
+	<div class="recentOrders card">
+		<div class="cardHeader">
+			<h2>
+				<strong>les horaires du restaurant
+				</strong>
+			</h2>
+			<a href="{{ path('app_admin_horaire_new') }}" class="btn"><ion-icon name="add-outline"></ion-icon>Ajouter une horaire</a>
+		</div>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Jour</th>
+					<th>Heure d'ouverteur du matin</th>
+					<th>Heure fermeture du matin</th>
+					<th>Heure d'ouverteur du soir</th>
+					<th>Heure fermeture du soir</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for horaire in horaires %}
+					<tr>
+						<td>{{ horaire.id }}</td>
+						<td>{{ horaire.day }}</td>
+						{% if horaire.closeM  %}
+							<td colspan="2"> <strong>Fermé </strong></td>
+						{% else %}
+							<td>{{ horaire.timeStartM ? horaire.timeStartM|date('H:i:s') : '' }}</td>
+							<td>{{ horaire.timeEndM ? horaire.timeEndM|date('H:i:s') : '' }}</td>
+						{% endif %}
+
+						{% if horaire.closeN %}
+							<td colspan="2"><strong>Fermé </strong></td>
+						{% else %}
+							<td>{{ horaire.timeStartN ? horaire.timeStartN|date('H:i:s') : '' }}</td>
+							<td>{{ horaire.timeEndN ? horaire.timeEndN|date('H:i:s') : '' }}</td>
+						{% endif %}
+
+						<td>
+							<button class="btn">
+								<a href="{{ path('app_admin_horaire_show', {'id': horaire.id}) }}">
+									<ion-icon name="eye-outline" class="iconBx"></ion-icon>
+								</a>
+							</button>
+							<button class="btn">
+								<a href="{{ path('app_admin_horaire_edit', {'id': horaire.id}) }}">
+									<ion-icon name="pencil" class="iconBx"></ion-icon>
+								</a>
+							</button>
+							<button class="btn">{{ include('admin/admin_horaire/_delete_form.html.twig') }}</button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

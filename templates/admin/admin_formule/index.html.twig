@@ -1,0 +1,56 @@
+{% extends "adminBase.html.twig" %}
+
+{% block title %}
+	<title>
+		Admin Formule |Quai Antique</title>
+{% endblock %}
+
+{% block body %}
+	{% include "admin/_partials/_cards.html.twig" %}
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>Liste des formules</strong>
+				</h2>
+				<a href="{{ path('app_admin_formule_new') }}" class="btn"><ion-icon name="add-outline"></ion-icon>Ajouter une formule</a>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Description</th>
+						<th>Prix</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for formule in formules %}
+						<tr>
+							<td>{{ formule.id }}</td>
+							<td>{{ formule.description }}</td>
+							<td>{{ formule.price }}€</td>
+							<td>
+								<button class="btn">
+									<a href="{{ path('app_admin_formule_show' , {'id': formule.id}) }}">
+										<ion-icon name="eye-outline" class="iconBx"></ion-icon>
+									</a>
+								</button>
+								<button class="btn">
+									<a href="{{ path('app_admin_formule_edit', {'id': formule.id}) }}">
+										<ion-icon name="pencil" class="iconBx"></ion-icon>
+									</a>
+								</button>
+								<button class="btn">{{ include('admin/admin_formule/_delete_form.html.twig') }}</button>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="4">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

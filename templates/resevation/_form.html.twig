@@ -1,0 +1,13 @@
+
+
+  {{ form_start(form) }}
+  <h1 class="h3 mb-3 fw-normal title text-center ">Réservation</h1>
+    {{ form_widget(form) }}
+
+    {# {% for allergy in allergies %}
+    <input type="checkbox" name="allergies[]" value="{{ allergy.id }}">
+    {{ allergy.name }}
+{% endfor %} #}
+{# <input type="select" name="nbr" value="{{ nbr.id }}"> #}
+    <button class="w-100 btn btn-lg">{{ button_label|default('Réserver') }}</button>
+{{ form_end(form) }}

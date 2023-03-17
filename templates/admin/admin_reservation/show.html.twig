@@ -1,0 +1,46 @@
+{% extends "adminBase.html.twig" %}
+
+{% block title %}
+	<title>
+		Admin réservation |Quai Antique</title>
+{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block body %}
+
+	{% include "admin/_partials/_cards.html.twig" %}
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>Réservation {{ reservation.id }} </strong>
+				</h2>
+				<a href="{{ path('app_admin_reservation_new') }}" class="btn">
+					<ion-icon name="add-outline"></ion-icon>Ajouter une réservation</a>
+			</div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom-Prénom</th>
+                <td>{{ reservation.user.firstName }} {{ reservation.user.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>L'heure</th>
+                <td>{{ reservation.time }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de convives</th>
+                <td>{{ reservation.numbreOfPeople }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {{ include('admin/admin_reservation/_delete_form.html.twig') }}
+{% endblock %}

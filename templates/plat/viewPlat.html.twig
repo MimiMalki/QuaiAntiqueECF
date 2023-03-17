@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ plat.title }} {% endblock %}
+
+{% block body %}
+
+    {# Titre de la page #}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ plat.title }}</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <p>
+            {{ plat.description|nl2br }}
+
+        </p>
+        <p>
+            {{ plat.price}}
+
+        </p>
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

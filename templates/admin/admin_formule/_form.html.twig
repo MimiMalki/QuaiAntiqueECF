@@ -1,0 +1,19 @@
+{{ form_start(form) }}
+
+<div>
+	{{ form_label(form.price,'Prix du formule') }}
+	{{ form_widget(form.price,{'att':{'class':''}}) }}
+</div>
+<div>
+	{{ form_label(form.description,'Description') }}
+	{{ form_widget(form.description,{'att':{'class':''}}) }}
+</div>
+<div>
+	{{ form_label(form.menu,'Associer à un menu') }}
+	{{ form_widget(form.menu,{'att':{'class':''}}) }}
+</div>
+<br>
+<div class="d-grid gap-2 col-6 mx-auto">
+	<button class="btn btn-dark "><ion-icon name="create"></ion-icon>{{ button_label|default('Ajouter') }}</button>
+</div>
+{{ form_end(form) }}

@@ -1,0 +1,23 @@
+{% extends "adminBase.html.twig" %}
+
+{% block title %}
+	<title>
+		Admin réservation |Quai Antique</title>
+{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block body %}
+
+	{% include "admin/_partials/_cards.html.twig" %}
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>Réservation
+						{{ reservation.id }}
+					</strong>
+				</h2>
+				<a href="{{ path('app_admin_reservation_index') }}" class="btn">
+					<ion-icon name="add-outline"></ion-icon>Liste des réservations</a>
+			</div>
+			{{ include('admin/admin_reservation/_form.html.twig') }}
+		{% endblock %}

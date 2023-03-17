@@ -1,0 +1,30 @@
+{% extends "adminBase.html.twig" %}
+
+{% block title %}
+	<title>
+		Admin Menu |Quai Antique</title>
+{% endblock %}
+
+{% block body %}
+	{% include "admin/_partials/_cards.html.twig" %}
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>Menu {{ menu.id }}</strong>
+				</h2>
+				<a href="{{ path('app_admin_category_index') }}" class="btn">Liste des menus</a>
+			</div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ menu.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre </th>
+                <td>{{ menu.title }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

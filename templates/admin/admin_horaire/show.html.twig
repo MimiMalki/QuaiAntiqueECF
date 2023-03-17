@@ -1,0 +1,50 @@
+{% extends 'adminBase.html.twig' %}
+{% block title %}
+	<title>Admin horaire |Quai Antique</title>
+{% endblock %}
+{% block body %}
+   	{% include "admin/_partials/_cards.html.twig" %}
+
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>
+					Horiare 
+					</strong>
+				</h2>
+				<a href="{{ path('app_admin_horaire_index') }}" class="btn">Liste des horaires</a>
+
+			</div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ horaire.id }}</td>
+            </tr>
+            <tr>
+                <th>Le jour de la semaine</th>
+                <td>{{ horaire.day }}</td>
+            </tr>
+            <tr>
+                <th>Heure d'ouverteur  du matin</th>
+                <td>{{ horaire.timeStartM ? horaire.timeStartM|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Heure de fermeture du matin</th>
+                <td>{{ horaire.timeEndM ? horaire.timeEndM|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Heure d'ouverteur du soir</th>
+                <td>{{ horaire.timeStartN ? horaire.timeStartN|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Heure de fermeture du soir</th>
+                <td>{{ horaire.timeEndN ? horaire.timeEndN|date('H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

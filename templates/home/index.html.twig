@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/styleHome.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/styleUser.css') }}">
+{% endblock %}
+
+{% block body %}
+	<body>
+		<div class="">
+			<img src={{asset('assets/images/banniere/banAnti1.jpg')}} width="100%">
+		</div>
+
+		<div class="container section text-center">
+			<div class="">
+				<h4 class="section-subtitle">A Chambéry, osez pousser la porte du restaurant</h4>
+			</div>
+			<div
+				class="">
+				{#  <h2 class="section-title" >QUAI ANTIQUE</h2> #}
+				<img src={{asset('assets/images/logo/LogoHome.png')}} width="100%">
+			</div>
+			<div class="">
+				<h4 class="section-subtitle">C’est par une porte de maison particulière que vous pourrez y accéder.<br> 
+				Pour acquérir une expérience gastronomique, à travers une cuisine sans artifice.
+				</h4>
+			</div>
+		</div>
+
+		<div class=" image-container ">
+			<img src={{asset('assets/images/banniere/banAnti2.jpg')}} width="100%">
+			<div class="texte text-center">
+				<h1 class="title">DÉCOUVREZ NOTRE GALERIE</h1>
+			</div>
+		</div>
+
+		<div class="container py-5 ">
+			<div class="row py-5  ">
+				<div class=" col card shadow-sm hover py-3 ">
+					{% for image in images %}
+						<figure class="figure-hover ">
+							<img
+							src="{{ vich_uploader_asset(image, 'file') }}" alt="{{ image.fileName }}" class=" card shadow-sm"/>
+						{# <figcaption class="figcaption">{{ image.name }}</figcaption> #}
+						</figure>
+					{% endfor %}
+				</div>
+
+				{# <div class="container py-5 "> <button type="button" href="{{ path('homepage') }}"> <a class="lien" href="{{ path('homepage') }}">Réserver </button></div> #}
+			</div>
+			<div class="d-grid gap-2 col-6 mx-auto text-center btn-lg">
+				<button type="button" href="{{ path('app_reservation_new') }}">
+					<a class="lien" href="{{ path('app_reservation_new') }}">Réserver
+					</button>
+				</div>
+			</div>
+		</body>
+	{% endblock %}
+

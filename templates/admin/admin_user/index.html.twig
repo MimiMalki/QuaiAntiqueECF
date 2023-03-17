@@ -1,0 +1,81 @@
+{% extends "adminBase.html.twig" %}
+
+{% block title %}
+	<title>Admin Liste Users |Quai Antique</title>
+{% endblock %}
+{% block body %}
+	{% include "admin/_partials/_cards.html.twig" %}
+
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>
+						Liste des utilisateurs
+					</strong>
+				</h2>
+				{# <a href="{{ path('app_admin_plat_index') }}" class="btn">Liste des plats</a> #}
+
+			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Email</th>
+						<th>Roles</th>
+						<th>Allergies</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<td>{{ user.id }}</td>
+							<td>{{ user.lastname }}</td>
+							<td>{{ user.firstname }}</td>
+							<td>{{ user.email }}</td>
+							<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+							<td>
+								{% if user.allergies is empty %}
+									Aucune allergie
+								{% else %}
+									<ul>
+										{% for allergie in user.allergies %}
+											<li>{{ allergie.name }}</li>
+										{% endfor %}
+									</ul>
+								{% endif %}
+							</td>
+
+							{# {% for allergie in user.allergies %}
+							<td>{{ allergie.name}}</td>
+							{% endfor %} #}
+
+							<td>
+								<button>
+									<a href="{{ path('app_admin_user_show', {'id': user.id}) }}">
+										<ion-icon name="eye-sharp" class="iconBx"></ion-icon>
+									</a>
+								</button>
+								<button>
+									<a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">
+										<ion-icon name="pencil" class="iconBx"></ion-icon>
+									</a>
+								</button>
+
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="8">Aucun utilisateurs</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+				{# {% include "admin/_partials/_pagination.html.twig" %} #}
+			</table>
+
+			<a href="{{ path('app_admin_user_new') }}">Create new</a>
+		{% endblock %}

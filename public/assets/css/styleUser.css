@@ -1,0 +1,93 @@
+/* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+
+/* =============== Globals ============== */
+
+* {
+    font-family: "Cambo", Duru;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --yellow: #d9ac35;
+    --darck:  #212529;
+    --white: #f5f5f5;
+    --gray:  #a4a5a7;
+}
+
+.container-fluid{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* ================= Footer  ============== */
+
+.footer-container{
+    background-color: var(--darck);
+    
+}
+footer .py-md-5{
+    padding-top: 0rem!;
+    padding-bottom: 0rem;
+}
+footer .py-md-5 {
+    padding-top: 1rem!important;
+    padding-bottom: 1rem!important;
+}
+.h5, h5 {
+    font-size: 1.25rem;
+    color:var(--yellow);
+}
+.row{
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.st-et{
+    font-size: 18px;
+
+}
+
+footer .table{
+    color:  var(--white);
+}
+.bloc-inner{
+    vertical-align: baseline;
+}
+
+/* ================= Button de reservation ============== */
+
+button{
+    background: var(--yellow);
+    border: 0.1em solid var(--yellow);
+    color: var(--gray);
+    padding: 0.6em 2.4em;
+    text-transform: uppercase;
+    display: inline-block;
+    letter-spacing: .3em;
+    font-size: .8em;
+    font-weight: 400;
+    transition: .3s background-color ease-out, .3s color ease-out;
+    -webkit-transition: .3s background-color ease-out, .3s color ease-out;
+    cursor: pointer;
+} 
+a{
+    text-decoration: none;
+    color: var(--white);
+    }
+button:hover {
+    color:var(--yellow);
+    text-decoration: none;
+    background:  var(--darck);
+    border: 0.1em solid var(--darck);
+}
+a:hover {
+    color: var(--yellow);
+    text-decoration: none;
+    background:  var(--darck);
+}
+
+
+
+

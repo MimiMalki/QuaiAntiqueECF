@@ -1,0 +1,102 @@
+
+/***   Style page d'accueil   *****/
+
+* {
+  
+    font-family: "Cambo", Duru;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* :root {
+ 
+    --yellow: #d9ac35;
+    --darck:  #212529;
+    --white: #f5f5f5;
+    --gray: #a4a5a7;
+  } */
+.section{
+    max-width: 50%;
+    margin-bottom: 45px;
+}
+.section-subtitle{
+    color: #212529;
+    
+}
+.section-title{
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 63px;
+    text-transform: Uppercase;
+    letter-spacing: 5px;
+    height: 109px;
+    font-style: normal;
+}
+
+.title{
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 63px;
+    text-transform: Uppercase;
+    letter-spacing: 5px;
+    height: 109px;
+    font-style: normal;
+}
+.image-container{
+    position: relative;
+}
+.texte{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: var(--darck);
+    font-size: 10px;
+    font-weight: bold;
+
+}
+/* ================= Galerie d'images ============== */
+
+/* .example-wrapper code { background: #F5F5F5; padding: 2px 6px; } */
+
+.hover figure {
+    position:relative;
+}
+.hover img {
+    vertical-align: top;
+}
+.hover p {
+    padding:8px;
+    margin:0;
+}
+.hover figcaption {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    background-color: var(--gray);
+    left: 0;
+    right: 0;
+    color:var(--darck);
+    font-weight:bold;
+    overflow: hidden;
+    transition: top 0.5s;
+    top: 300px;
+}
+.hover figure:hover figcaption {
+    transition:top 0.8s;
+    top:0;
+    padding-top:150px;
+    font-weight:bold;
+}
+.card{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: space-between;
+    align-items: center;   
+}
+
+
+

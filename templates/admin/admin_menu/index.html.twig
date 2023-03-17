@@ -1,0 +1,55 @@
+{% extends "adminBase.html.twig" %}
+
+{% block title %}
+	<title>
+		Admin Menu |Quai Antique</title>
+{% endblock %}
+
+{% block body %}
+	{% include "admin/_partials/_cards.html.twig" %}
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>Liste des menus</strong>
+				</h2>
+				<a href="{{ path('app_admin_menu_new') }}" class="btn"><ion-icon name="add-outline"></ion-icon>Ajouter un menu</a>
+			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Titre</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for menu in menus %}
+						<tr>
+							<td>{{ menu.id }}</td>
+							<td>{{ menu.title }}</td>
+							<td>
+								<button class="btn">
+									<a href="{{ path('app_admin_menu_show' , {'id': menu.id}) }}">
+										<ion-icon name="eye-outline" class="iconBx"></ion-icon>
+									</a>
+								</button>
+								<button class="btn">
+									<a href="{{ path('app_admin_menu_edit', {'id': menu.id}) }}">
+										<ion-icon name="pencil" class="iconBx"></ion-icon>
+									</a>
+								</button>
+								<button class="btn">{{ include('admin/admin_menu/_delete_form.html.twig') }}</button>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

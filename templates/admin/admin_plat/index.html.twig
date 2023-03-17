@@ -1,0 +1,98 @@
+{% extends "adminBase.html.twig" %}
+
+{% block title %}
+	<title>
+		Admin plat |Quai Antique</title>
+{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block body %}
+
+	{% include "admin/_partials/_cards.html.twig" %}
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>Liste des plats</strong>
+				</h2>
+				<a href="{{ path('app_admin_plat_new') }}" class="btn"><ion-icon name="add-outline"></ion-icon>Ajouter un plat</a>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Price</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for plat in plats %}
+						<tr>
+							<td>{{ plat.id }}</td>
+							<td>{{ plat.title }}</td>
+							<td>{{ plat.description }}</td>
+							<td>{{ plat.price }}€</td>
+							<td>
+								<button class="btn">
+									<a href="{{ path('app_admin_plat_show', {'id': plat.id}) }}">
+
+										<ion-icon name="eye-outline" class="iconBx"></ion-icon>
+
+									</a>
+								</button>
+								<button class="btn">
+									<a href="{{ path('app_admin_plat_edit', {'id': plat.id}) }}">
+
+										<ion-icon name="pencil" class="iconBx"></ion-icon>
+
+									</a>
+								</button>
+								<button class="btn">{{ include('admin/admin_plat/_delete_form.html.twig') }}</button>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
+{# {% block body %}
+	    <h1>Plat index</h1>
+	
+	    <table class="table">
+	        <thead>
+	            <tr>
+	                <th>Id</th>
+	                <th>Title</th>
+	                <th>Description</th>
+	                <th>Price</th>
+	                <th>actions</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        {% for plat in plats %}
+	            <tr>
+	                <td>{{ plat.id }}</td>
+	                <td>{{ plat.title }}</td>
+	                <td>{{ plat.description }}</td>
+	                <td>{{ plat.price }}</td>
+	                <td>
+	                    <a href="{{ path('app_admin_plat_show', {'id': plat.id}) }}">show</a>
+	                    <a href="{{ path('app_admin_plat_edit', {'id': plat.id}) }}">edit</a>
+	                </td>
+	            </tr>
+	        {% else %}
+	            <tr>
+	                <td colspan="5">no records found</td>
+	            </tr>
+	        {% endfor %}
+	        </tbody>
+	    </table>
+	
+	    <a href="{{ path('app_admin_plat_new') }}">Create new</a>
+	{% endblock %} #}

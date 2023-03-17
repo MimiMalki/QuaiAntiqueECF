@@ -1,0 +1,61 @@
+
+
+{% extends "adminBase.html.twig" %}
+
+{% block title %} <title> Admin Categorie |Quai Antique</title>
+{% endblock %}
+
+{% block body %}
+
+	{% include "admin/_partials/_cards.html.twig" %}
+	<div class="detailss ">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2><strong>Liste des categories</strong></h2>
+				<a href="{{ path('app_admin_category_new') }}" class="btn"><ion-icon name="add-outline"></ion-icon>Ajouter une categorie</a>
+			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Libellé</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for category in categories %}
+						<tr>
+							<td>{{ category.id }}</td>
+							<td>{{ category.label }}</td>
+							<td>
+								<button class="btn">
+									<a href="{{ path('app_admin_category_show' , {'id': category.id}) }}">
+										
+											<ion-icon name="eye-outline" class="iconBx"></ion-icon>
+										
+									</a>
+								</button>
+								<button class="btn">
+								<a href="{{ path('app_admin_category_edit', {'id': category.id}) }}">
+									
+										<ion-icon name="pencil" class="iconBx"></ion-icon>
+									
+								</a>
+									</button>
+								<button class="btn">{{ include('admin/admin_category/_delete_form.html.twig') }}</button>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			
+			
+	</div>
+		
+{% endblock %}

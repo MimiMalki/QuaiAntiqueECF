@@ -1,0 +1,20 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}
+	<title>Admin formule |Quai Antique</title>
+{% endblock %}
+{% block body %}
+	{% include "admin/_partials/_cards.html.twig" %}
+
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>
+						Ajouter une formule
+					</strong>
+				</h2>
+				<a href="{{ path('app_admin_formule_index') }}" class="btn">Liste des formules</a>
+			</div>
+			{{ include('admin/admin_formule/_form.html.twig') }}
+		{% endblock %}

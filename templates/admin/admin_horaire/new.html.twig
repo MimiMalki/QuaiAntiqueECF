@@ -1,0 +1,23 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}
+	<title>
+		Admin Horaires |Quai Antique</title>
+{% endblock %}
+
+{% block body %}
+	{% include "admin/_partials/_cards.html.twig" %}
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>Ajouter les horaires
+					</strong>
+				</h2>
+				<a href="{{ path('app_admin_horaire_index') }}" class="btn">Liste des horaires</a>
+			</div>
+
+			{{ include('admin/admin_horaire/_form.html.twig') }}
+		</div>
+	</div>
+{% endblock %}
