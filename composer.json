@@ -96,7 +96,7 @@
             "@php bin/console doctrine:migrations:migrate"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            ""
         ]
 
     },
@@ -108,6 +108,5 @@
             "allow-contrib": false,
             "require": "6.2.*"
         }
-        
     }
 }
