@@ -9,7 +9,7 @@
         "ext-iconv": "*",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.8",
-        "doctrine/doctrine-migrations-bundle": "^3.2",
+        "doctrine/doctrine-migrations-bundle": "*",
         "doctrine/orm": "^2.14",
         "liip/imagine-bundle": "^2.10",
         "phpdocumentor/reflection-docblock": "^5.3",
@@ -95,11 +95,11 @@
             "@auto-scripts"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
-        ],
-        "compile": [
-            "php bin/console doctrine:migrations:migrate"
+            "@auto-scripts",
+            "@php bin/console doctrin:schema:update --force",
+            "@php bin/console doctrine:migrations:migrate"
         ]
+       
     },
     "conflict": {
         "symfony/symfony": "*"
