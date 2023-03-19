@@ -199,8 +199,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-   
     /**
      * @return Collection<int, Reservation>
      */
@@ -237,3 +235,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
     
 }
+
+
+    

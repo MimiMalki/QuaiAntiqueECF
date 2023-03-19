@@ -1,0 +1,21 @@
+
+{% extends 'adminBase.html.twig' %}{% block title %}
+	<title>
+		Admin Allergies |Quai Antique</title>
+{% endblock %}
+
+{% block body %}
+{% include "admin/_partials/_cards.html.twig" %}
+<div class="detailss">
+	<div class="recentOrders card">
+		<div class="cardHeader">
+			<h2>
+				<strong>Ajouter une Allergie
+				</strong>
+			</h2>
+			<a href="{{ path('app_allergie_index') }}" class="btn" >Liste des allergies</a>
+		</div>
+
+    {{ include('admin/admin_allergie/_form.html.twig') }}
+
+{% endblock %}

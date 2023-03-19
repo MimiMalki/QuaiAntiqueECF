@@ -76,6 +76,15 @@
 				<span class="title">Réservations</span>
 			</a>
 		</li>
+		<li class="nav-item {{ app.request.get('_route') == 'app_allergie_index' ? 'active' : '' }}">
+
+			<a href="{{ path('app_allergie_index') }}">
+				<span class="icon">
+				<ion-icon name="nutrition-outline"></ion-icon>
+				</span>
+				<span class="title">Allergies</span>
+			</a>
+		</li>
 		<li class="nav-item {{ app.request.get('_route') == 'app_admin_horaire_index' ? 'active' : '' }}">
 
 			<a href="{{ path('app_admin_horaire_index') }}">
