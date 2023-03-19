@@ -201,6 +201,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * @return Collection<int, Resevation>
+     */
+    public function getResevations(): Collection
+    {
+        return $this->resevations;
+    }
+
+    public function addResevation(Resevation $resevation): self
+    {
+        if (!$this->resevations->contains($resevation)) {
+            $this->resevations->add($resevation);
+            $resevation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResevation(Resevation $resevation): self
+    {
+        if ($this->resevations->removeElement($resevation)) {
+            // set the owning side to null (unless already changed)
+            if ($resevation->getUser() === $this) {
+                $resevation->setUser(null);
+            }
+        }
+
+        return $this;
+   
+}
+
+    /**
      * @return Collection<int, Reservation>
      */
     public function getReservations(): Collection
