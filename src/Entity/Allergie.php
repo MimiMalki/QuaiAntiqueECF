@@ -21,16 +21,12 @@ class Allergie
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'allergies')]
     private Collection $user;
 
-    #[ORM\ManyToMany(targetEntity: Resevation::class, mappedBy: 'allergie')]
-    private Collection $resevations;
-
     #[ORM\ManyToMany(targetEntity: Reservation::class, mappedBy: 'allergie')]
     private Collection $reservations;
 
     public function __construct()
     {
         $this->user = new ArrayCollection();
-        $this->resevations = new ArrayCollection();
         $this->reservations = new ArrayCollection();
     }
 
@@ -71,35 +67,6 @@ class Allergie
     public function removeUser(User $user): self
     {
         $this->user->removeElement($user);
-
-        return $this;
-    }
-
-    
-
-    /**
-     * @return Collection<int, Resevation>
-     */
-    public function getResevations(): Collection
-    {
-        return $this->resevations;
-    }
-
-    public function addResevation(Resevation $resevation): self
-    {
-        if (!$this->resevations->contains($resevation)) {
-            $this->resevations->add($resevation);
-            $resevation->addAllergie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeResevation(Resevation $resevation): self
-    {
-        if ($this->resevations->removeElement($resevation)) {
-            $resevation->removeAllergie($this);
-        }
 
         return $this;
     }
