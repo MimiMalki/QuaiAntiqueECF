@@ -60,7 +60,6 @@ class RegistrationFormType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-            ->add('allergies')
             ;
         
     }
