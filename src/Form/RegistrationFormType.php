@@ -55,12 +55,10 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('allergies', EntityType::class, [
-                
                 'class' => Allergie::class,
                 'multiple' => true,
                 'expanded' => true,
             ])
-            ->add('allergies')
             ;
         
     }
