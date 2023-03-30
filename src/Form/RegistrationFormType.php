@@ -24,10 +24,38 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email',EmailType::class,['attr' => ['placeholder' => 'Entrer votre email']])
-            ->add('firstname',TextType::class,['attr' => ['placeholder' => 'Entrer votre nom']])
-            ->add('lastname',TextType::class,['attr' => ['placeholder' => 'Entrer votre prenom']])
-            ->add('numbre_of_people',IntegerType::class,['attr' => ['placeholder' => 'Entrer le nombre de convives']])
+            ->add('email', EmailType::class, [
+                'attr' => ['placeholder' => 'Entrer votre email'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre email',
+                    ])
+                ],
+            ])
+            ->add('firstname', TextType::class, [
+                'attr' => ['placeholder' => 'Entrer votre nom'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre nom',
+                    ])
+                ],
+            ])
+            ->add('lastname', TextType::class, [
+                'attr' => ['placeholder' => 'Entrer votre prénom'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre prénom',
+                    ])
+                ],
+            ])
+            ->add('numbre_of_people', IntegerType::class, [
+                'attr' => ['placeholder' => 'Entrer le nombre de convives'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer le nombre de convives',
+                    ])
+                ],
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -40,8 +68,10 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password',
-                'placeholder' => 'Entrer votre mot de passe'],
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    'placeholder' => 'Entrer votre mot de passe'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -58,9 +88,7 @@ class RegistrationFormType extends AbstractType
                 'class' => Allergie::class,
                 'multiple' => true,
                 'expanded' => true,
-            ])
-            ;
-        
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

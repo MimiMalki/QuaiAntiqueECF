@@ -1,41 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Inscription
+{% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('assets/css/styleSignUpLogin.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/styleUser.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/styleSignUpLogin.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/styleUser.css') }}">
 {% endblock %}
 {% block body %}
-<main class="form-signin card shadow-sm  ">
-  {{ form_start(registrationForm) }}
-    {# <img class="" src={{asset('assets/images/logo/logoNoir.png')}} class="brand-img" alt="" height="100px"> #}
-    <h1 class="h3 mb-3 fw-normal title text-center ">Créer votre compte</h1>
-<h6 class=" mb-3  text-center ">Vous avez déjà un compte ?<a class="lien" href="{{ path('app_login') }}"><h5>Connexion</h5></a></h6>
-    <div class="form-floating">
-      {{ form_row(registrationForm.lastname, {label:'Nom'}) }}
-    </div>
-    <div class="form-floating">
-      {{ form_row(registrationForm.firstname, {label:'Prénom'}) }}
-    </div>
-    <div class="form-floating">
-      {{ form_row(registrationForm.numbre_of_people, {label:'Nombre de convives'}) }}
-    </div>
-    <div class="form-floating">
-      {{ form_row(registrationForm.email, {label:'Email'}) }}
-    </div>
-    <div class="form-floating">
-      {{ form_row(registrationForm.password, {label:'Mot de passe'}) }}
-    </div>
-    <div class="form-floating">
-      {{ form_row(registrationForm.allergies) }}
-    </div>
-    <div class="checkbox mb-3">
-      <label>
-      {{ form_row(registrationForm.agreeTerms, {label:'Acceptez les Conditions'}) }}
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg " type="submit" href="{{ path('app_login') }}">S'inscrire</button>
-      {{ form_end(registrationForm) }}
-  {{ form_rest(registrationForm) }}
-</main>  
+	<main class="form-signin card shadow-sm  ">
+		{{ form_start(registrationForm) }}
+		{# <img class="" src={{asset('assets/images/logo/logoNoir.png')}} class="brand-img" alt="" height="100px"> #}
+		<h1 class="h3 mb-3 fw-normal title text-center ">Créer votre compte</h1>
+		<h6 class=" mb-3  text-center ">Vous avez déjà un compte ?<a class="lien" href="{{ path('app_login') }}">
+				<h5>Connexion</h5>
+			</a>
+		</h6>
+		<div class="form-floating">
+			{{ form_row(registrationForm.lastname, {label:'Nom'}) }}
+      {{ form_errors(registrationForm.lastname) }}
+		</div>
+		<div class="form-floating">
+			{{ form_row(registrationForm.firstname, {label:'Prénom'}) }}
+      {{ form_errors(registrationForm.firstname) }}
+		</div>
+		<div class="form-floating">
+			{{ form_row(registrationForm.numbre_of_people, {label:'Nombre de convives'}) }}
+		</div>
+		<div class="form-floating">
+			{{ form_row(registrationForm.email, {label:'Email'}) }}
+      {{ form_errors(registrationForm.email) }}
+		</div>
+		<div class="form-floating">
+			{{ form_row(registrationForm.password, {label:'Mot de passe'}) }}
+		</div>
+		<div class="form-floating">
+			{{ form_row(registrationForm.allergies) }}
+		</div>
+		<div class="checkbox mb-3">
+			<label>
+				{{ form_row(registrationForm.agreeTerms, {label:'Acceptez les Conditions'}) }}
+			</label>
+		</div>
+
+		<button class="w-100 btn btn-lg " type="submit" href="{{ path('app_login') }}">S'inscrire</button>
+		{{ form_end(registrationForm) }}
+		{{ form_rest(registrationForm) }}
+	</main>
 {% endblock %}
