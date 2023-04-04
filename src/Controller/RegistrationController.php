@@ -10,18 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Security\EmailVerifier;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use App\Security\LoginAuthenticator;
+use App\Security\EmailVerifier;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
-
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RegistrationController extends AbstractController
-
 {
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator): Response
+    public function register(ValidatorInterface $validator,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -44,7 +43,6 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-
         // do anything else you need here, like send an email
         return $userAuthenticator->authenticateUser(
             $user,
@@ -54,9 +52,11 @@ class RegistrationController extends AbstractController
         // $mailer->sendEmail(content:$emailMessage);
             return $this->redirectToRoute('app_login');
         }
+        $errors = $validator->validate($user);
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'errors' => $errors
             
         ]);
     }

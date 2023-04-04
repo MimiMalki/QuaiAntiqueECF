@@ -5,45 +5,79 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('assets/css/styleSignUpLogin.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/styleUser.css') }}">
+	<!-- Chargement du fichier CSS de bootstrap-select -->
+    <link rel="stylesheet" href="{{ asset('vendor/snapappointments/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
 {% endblock %}
 {% block body %}
 	<main class="form-signin card shadow-sm  ">
-		{{ form_start(registrationForm) }}
+		{{ form_start(registrationForm ,{'attr': {'novalidate': 'novalidate' }}) }}
 		{# <img class="" src={{asset('assets/images/logo/logoNoir.png')}} class="brand-img" alt="" height="100px"> #}
 		<h1 class="h3 mb-3 fw-normal title text-center ">Créer votre compte</h1>
 		<h6 class=" mb-3  text-center ">Vous avez déjà un compte ?<a class="lien" href="{{ path('app_login') }}">
 				<h5>Connexion</h5>
 			</a>
 		</h6>
+
+		{% if not registrationForm.vars.valid %}
+			<div class="alert alert-danger">
+				Le formulaire contient des erreurs.
+			</div>
+		{% else %}
+			<div class="col-md-8"></div>
+		{% endif %}
 		<div class="form-floating">
-			{{ form_row(registrationForm.lastname, {label:'Nom'}) }}
-      {{ form_errors(registrationForm.lastname) }}
+			{{ form_row(registrationForm.firstname) }}
 		</div>
 		<div class="form-floating">
-			{{ form_row(registrationForm.firstname, {label:'Prénom'}) }}
-      {{ form_errors(registrationForm.firstname) }}
+			{{ form_row(registrationForm.lastname) }}
 		</div>
 		<div class="form-floating">
 			{{ form_row(registrationForm.numbre_of_people, {label:'Nombre de convives'}) }}
 		</div>
 		<div class="form-floating">
-			{{ form_row(registrationForm.email, {label:'Email'}) }}
-      {{ form_errors(registrationForm.email) }}
+			{{ form_row(registrationForm.email) }}
 		</div>
 		<div class="form-floating">
 			{{ form_row(registrationForm.password, {label:'Mot de passe'}) }}
 		</div>
 		<div class="form-floating">
 			{{ form_row(registrationForm.allergies) }}
+			{# {{ form_row(registrationForm.allergies, {'attr': {'class': 'selectpicker', 'data-style': 'btn-default', 'multiple': 'true'}}) }} #}
+
 		</div>
 		<div class="checkbox mb-3">
 			<label>
-				{{ form_row(registrationForm.agreeTerms, {label:'Acceptez les Conditions'}) }}
+				{{ form_row(registrationForm.agreeTerms, {label:'Acceptez les conditions'}) }}
 			</label>
 		</div>
-
 		<button class="w-100 btn btn-lg " type="submit" href="{{ path('app_login') }}">S'inscrire</button>
 		{{ form_end(registrationForm) }}
 		{{ form_rest(registrationForm) }}
 	</main>
+{% endblock %}
+
+{% block javascripts %}
+<!-- Chargement de jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Chargement du fichier JavaScript de bootstrap-select -->
+    {{ encore_entry_script_tags('vendor/snapappointments/bootstrap-select/dist/js/bootstrap-select.min.js') }}
+
+    <!-- Initialisation de bootstrap-select -->
+    // <script>
+    //     $(document).ready(function() {
+    //         $('.selectpicker').selectpicker();
+    //     });
+    // </script>
+	<script>
+        $(document).ready(function() {
+            $('.selectpicker').selectpicker({
+                noneSelectedText: 'Aucune sélection',
+                selectedTextFormat: 'count > 1',
+                actionsBox: true,
+                liveSearch: true
+            });
+        });
+    </script>
+	
 {% endblock %}
