@@ -12,47 +12,91 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-
+use Symfony\Component\Validator\Constraints\Email;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, [
-                'attr' => ['placeholder' => 'Entrer votre email'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer votre email',
-                    ])
-                ],
-            ])
-            ->add('firstname', TextType::class, [
+
+            ->add('lastname', TextType::class, [
                 'attr' => ['placeholder' => 'Entrer votre nom'],
+                'label' => 'Nom',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre nom',
                     ])
                 ],
             ])
-            ->add('lastname', TextType::class, [
+            ->add('firstname', TextType::class, [
                 'attr' => ['placeholder' => 'Entrer votre prénom'],
+                'label' => 'Prénom',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre prénom',
                     ])
                 ],
             ])
+            ->add('email', EmailType::class, [
+                'attr' => ['placeholder' => 'Entrer votre email'],
+                'label' => 'Email',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre email',
+                    ]),
+                    new Email([
+                        'message' => 'L\'adresse email "{{ value }}" n\'est pas valide',
+                        // message affiché si l'utilisateur saisit une adresse email incorrecte
+                    ]),
+                ],
+            ])
             ->add('numbre_of_people', IntegerType::class, [
-                'attr' => ['placeholder' => 'Entrer le nombre de convives'],
+                'attr' => [
+                    'label' => 'Nombre de convives',
+                    'placeholder' => 'Entrer le nombre de convives',
+                    'min' => 1, 'max' => 20,
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer le nombre de convives',
+                    ])
+                ],
+            ])
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les champs de mot de passe doivent correspondre.',
+                'options' => ['attr' => ['class' => 'password-field']],
+                'required' => true,
+                'first_options' => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmer le mot de passe'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre mot de passe',
+                    ]),
+                    new Length(
+                        [
+                            'min' => 6, 'max' => 255,
+                            'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
+                        ],
+                    ),
+                ],
+            ])
+            ->add('allergies', EntityType::class, [
+                'class' => Allergie::class,
+                'label' => 'Avez-vous des allergies alimentaires ?',
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez selectionner vos allergies cas où vous n\'avez pas d\'allergies cocher Acune  ',
                     ])
                 ],
             ])
@@ -60,34 +104,9 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter nos conditions.',
                     ]),
                 ],
-            ])
-            ->add('password', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'attr' => [
-                    'autocomplete' => 'new-password',
-                    'placeholder' => 'Entrer votre mot de passe'
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])
-            ->add('allergies', EntityType::class, [
-                'class' => Allergie::class,
-                'multiple' => true,
-                'expanded' => true,
             ]);
     }
 
