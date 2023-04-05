@@ -14,7 +14,8 @@
 		<form method="post">
 
 			{% if error %}
-				<div class=" esp alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{# <div class=" esp alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div> #}
+				<div class="alert alert-danger error input ">L'utilisateur n'existe pas. Veuillez vérifier votre email et/ou votre mot de passe</div>
 			{% endif %}
 			{% if app.user %}
 				<div class=" esp mb-3 alert alert-warning" role="alert">
