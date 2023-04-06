@@ -93,6 +93,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Avez-vous des allergies alimentaires ?',
                 'choice_label' => 'name',
                 'multiple' => true,
+                'mapped' => false,
                 'expanded' => true,
                 'constraints' => [
                     new NotBlank([
