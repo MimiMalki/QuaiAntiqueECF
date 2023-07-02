@@ -20,7 +20,17 @@ class PlatRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Plat::class);
     }
+    public function getPlatNames()
+    {
+        $plat = $this->findAll();
+        $platsTitle = [];
 
+        foreach ($plat as $plat) {
+            $platsTitle[$plat->getTitle()] = $plat->getTitle();
+        }
+
+        return $platsTitle;
+    }
     public function save(Plat $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

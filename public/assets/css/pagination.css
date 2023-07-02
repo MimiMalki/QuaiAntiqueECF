@@ -1,0 +1,11 @@
+.pagination {
+    --bs-pagination-color: #d9ac35;
+    --bs-pagination-hover-color: #d9ac35;
+    --bs-pagination-active-bg: #212529;
+    --bs-pagination-active-border-color: #d9ac35;
+    --bs-pagination-focus-color:#212529;
+}
+.active>.page-link{
+    background-color: #d9ac35;
+    border-color:#d9ac35;
+}

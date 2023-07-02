@@ -1,71 +1,86 @@
-<!-- ========================= Main ==================== -->
-{# <div class="main"> #}
-
-	<!-- ======================= Cards ================== -->
-	<div class="cardBox">
-		<div class="card">
-			<div>
-				<div class="numbers">1,104</div>
-				<div class="cardName">Nombre de visites</div>
-			</div>
-
-			<div class="iconBx">
-				<ion-icon name="eye-outline"></ion-icon>
-			</div>
+<div class="details">
+	<div class="recentOrders card">
+		<div class="cardHeader">
+			<h2>Dernières réservations</h2>
+			<a href="{{ path('app_admin_reservation_index') }}" class="btn">Voir tout</a>
 		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Client</th>
+					<th>Date</th>
+					<th>L'heure</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for reservation in pagination %}
+					<tr>
+						<td>{{ reservation.id }}</td>
+						{% if reservation.user is not null %}
+							<td>{{ reservation.user.firstname }}
+								{{ reservation.user.lastname }}</td>
+						{% else %}
+							<td>{{ reservation.firstname }}
+								{{ reservation.lastname }}</td>
+						{% endif %}
+						<td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
+						<td>{{ reservation.time }}</td>
+						<td>
+							<button class="btn">
+								<a href="{{ path('app_admin_reservation_show', {'id': reservation.id}) }}">
+									<ion-icon name="eye-outline" class="iconBx"></ion-icon>
+								</a>
+							</button>
+							<button class="btn">
+								<a href="{{ path('app_admin_reservation_edit', {'id': reservation.id}) }}">
+									<ion-icon name="pencil" class="iconBx"></ion-icon>
+								</a>
+							</button>
+							<button class="btn">{{ include('admin/admin_reservation/_delete_form.html.twig') }}</button>
 
-		<div class="card">
-			<div>
-				<div class="numbers">80</div>
-				<div class="cardName">Réservations</div>
-			</div>
-
-			<div class="iconBx">
-				<ion-icon name="timer-outline"></ion-icon>
-			</div>
-		</div>
-
-		<div class="card">
-			<div>
-				<div class="numbers">84</div>
-				<div class="cardName">Commentaires</div>
-			</div>
-
-			<div class="iconBx">
-				<ion-icon name="chatbubbles-outline"></ion-icon>
-			</div>
-		</div>
-
-		<div class="card">
-			<div>
-				<div class="numbers">8,942€</div>
-				<div class="cardName">Revenus</div>
-			</div>
-
-			<div class="iconBx">
-				<ion-icon name="cash-outline"></ion-icon>
-			</div>
-		</div>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">Aucune réservation</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
-
-	<!-- ================ Order Details List ================= -->
-	<div class="details">
-		<div class="recentOrders card">
-			<div class="cardHeader">
-				<h2>Dernières réservations</h2>
-				<a href="#" class="btn">Voir tout</a>
-			</div>
-			<table>
-			</table>
+	<div class="recentCustomers card">
+		<div class="cardHeader">
+			<h2>Capacité du restaurant
+			</h2>
 		</div>
-
-		<!-- ================= New Customers ================ -->
-		<div class="recentCustomers card">
-			<div class="cardHeader">
-				<h2>Récents clients </h2>
-			</div>
-			<table>
-			</table>
-		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nombre des places maximum de restaurant</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for seuil_maximum in seuil_maximums %}
+					<tr>
+						<td>{{ seuil_maximum.nbrSeatMax }}
+							places
+						</td>
+						<td>
+							<button class="btn">
+								<a href="{{ path('app_admin_seuil_maximum_edit', {'id': seuil_maximum.id}) }}">
+									<ion-icon name="pencil" class="iconBx"></ion-icon>
+								</a>
+							</td>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
-{# </div> #}
+</div>

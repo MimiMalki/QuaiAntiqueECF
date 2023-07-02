@@ -9,15 +9,35 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\PaginationService;
 
 #[Route('/images')]
 class AdminImagesController extends AbstractController
-{
-    #[Route('/liste', name: 'app_images_index', methods: ['GET'])]
-    public function index(ImagesRepository $imagesRepository): Response
+{ 
+    private $paginationService;
+
+    public function __construct(PaginationService $paginationService)
     {
+        $this->paginationService = $paginationService;
+    }
+
+    #[Route('/liste', name: 'app_images_index', methods: ['GET'])]
+    public function index(ImagesRepository $imagesRepository, Request $request): Response
+    {
+        $pageSize = 5;
+        $results = $imagesRepository->createQueryBuilder('a')
+            ->orderBy('a.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        $pagination = $this->paginationService->paginate(
+            $results,
+            $request->query->getInt('page', 1),
+            $pageSize
+        );
         return $this->render('admin/admin_images/index.html.twig', [
             'images' => $imagesRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 

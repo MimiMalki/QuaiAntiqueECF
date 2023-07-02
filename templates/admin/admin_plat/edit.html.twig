@@ -12,10 +12,11 @@
 		<div class="recentOrders card">
 			<div class="cardHeader">
 				<h2>
-					<strong>Modifier le plat {{ plat.id }}</strong>
+					<strong>Modifier le plat{{ plat.id }}</strong>
 				</h2>
-				<a href="{{ path('app_admin_plat_new') }}" class="btn"><ion-icon name="add-outline"></ion-icon>Ajouter un plat</a>
+				<a href="{{ path('app_admin_plat_index') }}" class="btn">Liste des plats</a>
+				<a href="{{ path('app_admin_plat_new') }}" class="btn">
+				<ion-icon name="add-outline"></ion-icon>Ajouter un plat</a>
 			</div>
-
-    {{ include('admin/admin_plat/_form.html.twig', {'button_label': 'Modifier'}) }}
-{% endblock %}
+			{{ include('admin/admin_plat/_form.html.twig', {'button_label': 'Modifier'}) }}
+		{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Menu index
+{% block title %}Menu
 {% endblock %}
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('assets/css/styleMenuCarte.css') }}">
@@ -23,14 +23,11 @@
 					{% endfor %}
 				</div>
 			</div>
-
 		</div>
-		<div class="d-grid gap-2 col-6 mx-auto text-center btn-lg">
-				<button type="button" href="{{ path('app_reservation_new') }}">
-					<a class="lien" href="{{ path('app_reservation_new') }}">Réserver
-					</button>
-				</div>
+		<div class="d-grid col-md-6 mt-3 col-sm-8 col-12 mx-auto text-center">
+			<button type="button" class"bttn" href="{{ path('app_reservation_new') }}">
+				<a class="lien" href="{{ path('app_reservation_new') }}">Réserver
+				</button>
 			</div>
-	</div>
-
-{% endblock %}
+		</div>
+	{% endblock %}

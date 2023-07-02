@@ -13,12 +13,14 @@
 				<h2>
 					<strong>Liste des formules</strong>
 				</h2>
-				<a href="{{ path('app_admin_formule_new') }}" class="btn"><ion-icon name="add-outline"></ion-icon>Ajouter une formule</a>
+				<a href="{{ path('app_admin_formule_new') }}" class="btn">
+					<ion-icon name="add-outline"></ion-icon>Ajouter une formule</a>
 			</div>
 			<table class="table">
 				<thead>
 					<tr>
 						<th>Id</th>
+						<th>Menu associé</th>
 						<th>Description</th>
 						<th>Prix</th>
 						<th>actions</th>
@@ -28,7 +30,8 @@
 					{% for formule in formules %}
 						<tr>
 							<td>{{ formule.id }}</td>
-							<td>{{ formule.description }}</td>
+							<td>{{ formule.menu }}</td>
+							<td style="width: 50%;">{{ formule.description }}</td>
 							<td>{{ formule.price }}€</td>
 							<td>
 								<button class="btn">

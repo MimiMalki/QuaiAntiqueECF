@@ -1,0 +1,29 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Admin SeuilMaximum  |Quai Antique</title>{% endblock %}{% block body %}
+{% include "admin/_partials/_cards.html.twig" %}
+<div class="detailss">
+	<div class="recentOrders card">
+		<div class="cardHeader">
+			<h2>
+				<strong>Seuil Maximum de restaurant
+					{{ reservation.id }}
+				</strong>
+			</h2>
+		</div>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ seuil_maximum.id }}</td>
+				</tr>
+				<tr>
+					<th>NbrSeatMax</th>
+					<td>{{ seuil_maximum.nbrSeatMax }}</td>
+				</tr>
+			</tbody>
+		</table>
+		{# <a href="{{ path('app_admin_seuil_maximum_index') }}">back to list</a> #}
+		<a href="{{ path('app_admin_seuil_maximum_edit', {'id': seuil_maximum.id}) }}">Modifier</a>
+		{{ include('admin/admin_seuil_maximum/_delete_form.html.twig') }}
+	{% endblock %}

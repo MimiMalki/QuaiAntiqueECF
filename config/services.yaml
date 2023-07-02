@@ -16,7 +16,6 @@ services:
         autowire: true
         autoconfigure: true
         public: true
-        
     # AppBundle\EventListener\FooListener:
     #     tags:
     #         - { name: kernel.event_listener, event: vich_uploader.pre_upload } 

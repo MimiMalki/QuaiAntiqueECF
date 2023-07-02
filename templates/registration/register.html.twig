@@ -47,7 +47,7 @@
 		</div>
 		<div class="checkbox mb-3">
 			<label>
-				{{ form_row(registrationForm.agreeTerms, {label:'Acceptez les conditions'}) }}
+				{{ form_row(registrationForm.agreeTerms, {label:"J'accepte les conditions et les lois de RGBD"}) }}
 			</label>
 		</div>
 		<button class="w-100 btn btn-lg " type="submit" href="{{ path('app_login') }}">S'inscrire</button>
@@ -62,13 +62,6 @@
 
     <!-- Chargement du fichier JavaScript de bootstrap-select -->
     {{ encore_entry_script_tags('vendor/snapappointments/bootstrap-select/dist/js/bootstrap-select.min.js') }}
-
-    <!-- Initialisation de bootstrap-select -->
-    // <script>
-    //     $(document).ready(function() {
-    //         $('.selectpicker').selectpicker();
-    //     });
-    // </script>
 	<script>
         $(document).ready(function() {
             $('.selectpicker').selectpicker({

@@ -32,25 +32,33 @@
 					</tr>
 				</thead>
 				<tbody>
-
-					{% for reservation in reservations %}
+					{% for reservation in pagination %}
 						<tr>
 							<td>{{ reservation.id }}</td>
-							<td>{{ reservation.user.firstName }}
-								{{ reservation.user.lastName }}</td>
-							<td>{{ reservation.user.email }}</td>
+							{% if reservation.user is not null %}
+								<td>{{ reservation.user.firstname }}
+									{{ reservation.user.lastname }}</td>
+								<td>{{ reservation.user.email }}</td>
+							{% else %}
+								<td>{{ reservation.firstname }}
+									{{ reservation.lastname }}</td>
+								<td>{{ reservation.email }}</td>
+							{% endif %}
 							<td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
 							<td>{{ reservation.time }}</td>
-							<td>{{ reservation.numbreOfPeople }}</td>
+							<td>{{ reservation.numbreOfPeople }}
+								personnes</td>
 							<td>
-								{% if reservation.user.allergies is empty %}
-									Aucune allergie
-								{% else %}
-									<ul>
-										{% for allergie in  reservation.user.allergies %}
-											<li>{{ allergie.name }}</li>
-										{% endfor %}
-									</ul>
+								{% if reservation.user is not null %}
+									{% if reservation.allergie is not empty %}
+										<ul>
+											{% for allergie in reservation.allergie %}
+												<li>{{ allergie.name }}</li>
+											{% endfor %}
+										</ul>
+									{% else %}
+										Aucune allergie
+									{% endif %}
 								{% endif %}
 							</td>
 							<td>
@@ -65,7 +73,6 @@
 									</a>
 								</button>
 								<button class="btn">{{ include('admin/admin_reservation/_delete_form.html.twig') }}</button>
-
 							</td>
 						</tr>
 					{% else %}
@@ -75,5 +82,5 @@
 					{% endfor %}
 				</tbody>
 			</table>
-
+			{% include "admin/_partials/_pagination.html.twig" %}
 		{% endblock %}

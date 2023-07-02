@@ -15,9 +15,14 @@
 	{{ form_label(form.Categoy,'Associer à une category') }}
 	{{ form_widget(form.Categoy,{'att':{'class':''}}) }}
 </div>
+<div>
+	{{ form_label(form.image,'Associer à une image') }}
+	{{ form_widget(form.image,{'att':{'class':''}}) }}
+</div>
 <br>
 <div class="d-grid gap-2 col-6 mx-auto">
-	<button class="btn btn-dark "><ion-icon name="create"></ion-icon>{{ button_label|default('Ajouter') }}</button>
+	<button class="btn btn-dark ">
+		<ion-icon name="create"></ion-icon>
+		{{ button_label|default('Ajouter') }}</button>
 </div>
 {{ form_end(form) }}
-

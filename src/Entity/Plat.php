@@ -26,6 +26,21 @@ class Plat
     #[ORM\ManyToOne(inversedBy: 'plats')]
     private ?Category $Categoy = null;
 
+    #[ORM\OneToOne(targetEntity: Images::class, mappedBy: 'plat')]
+    private ?Images $image = null;
+    
+    public function getImage(): ?Images
+    {
+        return $this->image;
+    }
+    
+    public function setImage(?Images $image): self
+    {
+        $this->image = $image;
+        
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

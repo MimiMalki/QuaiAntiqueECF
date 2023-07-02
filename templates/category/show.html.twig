@@ -11,7 +11,7 @@
 {% block body %}
 	<div class="container  blocGeneral ">
 		<div class="row text-center blocGeneral">
-			<div class="bloc1 col-6">
+			<div class="bloc1 col-md-4">
 				<h1 class="title">La carte</h1>
 				{% for category in categories %}
 					<a href="{{ path('app_category_show', {'id': category.id}) }}">
@@ -22,31 +22,54 @@
 					</a>
 				{% endfor %}
 			</div>
-			<div class="bloc2 col-6">
+			<div class="bloc2 col-md-8 ">
 				<div class="" {% for category in categories %} id="{{ category.id }}" {% endfor %}>
 					<h2>
 						<strong>
 							{{ category.label }}</strong>
 					</h2>
-					<table class="table">
-						<tbody>
-							{% for plat in plats %}
-								<tr>
-									<td scope="row">
-										{{  plat.title  }}
-									</td>
-									<td scope="row">
-										{{ plat.description|nl2br }}
-									</td>
-									<td scope="row">
-										{{ plat.price }}€
-									</td>
-								</tr>
-							{% endfor %}
-						</tbody>
-					</table>
+					<div class="card-container">
+						{% for plat in plats %}
+							<div class="card">
+								<h5>{{ plat.title }}</h5>
+								{% if plat.image %}
+									<div class="image-container">
+										<img src="{{ vich_uploader_asset(plat.image, 'file') }}" alt="{{ plat.image.fileName }}" width="200px" height="200px">
+									</div>
+								{% endif %}
+								<span class="plat-description">{{ plat.description|nl2br }}</span>
+								<span class="plat-price">{{ plat.price }}€</span>
+							</div>
+						{% endfor %}
+					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
+</div>
+<div class="d-grid col-md-6 mt-3 col-sm-8 col-12 mx-auto text-center">
+	<button type="button" class"bttn" href="{{ path('app_reservation_new') }}">
+		<a class="lien" href="{{ path('app_reservation_new') }}">Réserver
+		</button>
+	</div>
 {% endblock %}
+
+
+{# <table class="table">
+																	<tbody>
+																		{% for plat in plats %}
+																			<tr>
+																				<td scope="row">
+																					<div class="float-left">{{  plat.title  }}</div>
+																				</td>
+																				<td scope="row">
+																					<div class="float-left">{{ plat.description|nl2br }}</div>
+																				</td>
+																				<td scope="row">
+																					<div class="style">{{ plat.price }}€</div>
+																				</td>
+																			</tr>
+																		{% endfor %}
+																	</tbody>
+																</table> #}

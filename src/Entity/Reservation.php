@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
 {
@@ -16,13 +16,12 @@ class Reservation
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\GreaterThan("now", message: "La date de réservation doit être supérieure à la date d'aujourd'hui")]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]
     private ?string $time = null;
-    // #[ORM\Column(type: Types::TIME_MUTABLE)]
-    // private ?\DateTimeInterface $time = null;
 
     #[ORM\Column]
     private ?int $numbre_of_people = null;
@@ -32,6 +31,15 @@ class Reservation
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     private ?User $user = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lastname = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
 
     public function __construct()
     {
@@ -65,17 +73,6 @@ class Reservation
 
         return $this;
     }
-    // public function getTime(): ?\DateTimeInterface
-    // {
-    //     return $this->time;
-    // }
-
-    // public function setTime(\DateTimeInterface $time): self
-    // {
-    //     $this->time = $time;
-
-    //     return $this;
-    // }
 
     public function getNumbreOfPeople(): ?int
     {
@@ -101,6 +98,7 @@ class Reservation
     {
         if (!$this->allergie->contains($allergie)) {
             $this->allergie->add($allergie);
+            $allergie->addReservation($this);
         }
 
         return $this;
@@ -127,5 +125,41 @@ class Reservation
     public function __toString()
     {
         return $this->user;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
     }
 }

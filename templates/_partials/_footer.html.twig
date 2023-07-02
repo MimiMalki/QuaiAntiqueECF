@@ -1,11 +1,11 @@
 <!-- Footer des pages -->
 
-{# <footer class="bd-footer py-3 py-md-5 mt-5 bg-dark"> #}
-	<div class="container py-3 py-md-5 px-3 px-md-3">
+<footer class="bd-footer bg-dark">
+	<div class="container py-3 py-md-5 px-3 px-md-3 ">
 		<div class="row">
 
-			<div class="col-lg-4 mb-3 ">
-				<a class="navbar-brand m-auto" href="{{ path('homepage') }}"><img src={{asset('assets/images/logo/logoBlanc.png')}} class="brand-img" alt="" height="100px"></a>
+			<div class="col-lg-4 container-fuid d-flex flex-column align-items-center mb-4 mb-lg-0 text-center">
+				<a class="navbar-brand mr-5" href="{{ path('homepage') }}"><img src={{asset('assets/images/logo/logoBlanc.png')}} class="brand-img" alt="" height="100px"></a>
 				<ul class="list-unstyled small text-muted st-et">
 					<li class="mb-2 st-et">Restaurant Gastronomique à Chambéry autour des produits frais et surtout haut savois ...</li>
 					<li class="mb-2 st-et">01 66 04 05 07
@@ -16,17 +16,19 @@
 				</ul>
 			</div>
 
-			<div class="col-4 col-lg-4">
+			<div class="col-lg-4 container-fuid d-flex flex-column align-items-center">
 				<h5>Nos horaires</h5>
 				<table class="table">
 					<tbody>
 						{% for horaire in horaires %}
 							<tr>
-								<td><strong>{{ horaire.day }}
-										</strong></td>
+								<td>
+									<strong>{{ horaire.day }}
+									</strong>
+								</td>
 								{% if horaire.closeM  %}
 									<td colspan="2">
-										<strong>Fermé
+										<strong style="color: #d9ac35;">Fermé
 										</strong>
 									</td>
 								{% else %}
@@ -36,7 +38,7 @@
 
 								{% if horaire.closeN %}
 									<td colspan="2">
-										<strong>Fermé
+										<strong style="color: #d9ac35;">Fermé
 										</strong>
 									</td>
 								{% else %}
@@ -50,21 +52,37 @@
 			</table>
 		</div>
 
-
-		<div class="col-6 col-lg-2 mb-3">
+		<div class="col-lg-4  container-fuid d-flex flex-column align-items-center">
 			<h5>Nos réseaux sociaux</h5>
-			<ul class="list-unstyled">
-				<li class="mb-2">
-					<a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+			<ul class="list-unstyled ">
+				<li class="mb-2 me-2">
+					<a href="#">
+						<ion-icon name="logo-facebook" class="social-icon"></ion-icon>
+					</a>
 				</li>
-				<li class="mb-2">
-					<a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+				<li class="mb-2 me-2">
+					<a href="#">
+						<ion-icon name="logo-twitter" class="social-icon"></ion-icon>
+					</a>
 				</li>
-				<li class="mb-2">
-					<a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+				<li class="mb-2 me-2">
+					<a href="#">
+						<ion-icon name="logo-instagram" class="social-icon"></ion-icon>
+					</a>
 				</li>
 			</ul>
 		</div>
 
 	</div>
-</div></footer>
+</div>
+</footer>
+<style>
+.social-icon {
+	font-size: 30px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	padding: 5px;
+}
+.social-icon:hover {
+	border: 2px solid #d9ac35;
+}</style>

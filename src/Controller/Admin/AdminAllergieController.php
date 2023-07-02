@@ -9,15 +9,35 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\PaginationService;
 
 #[Route('/allergie')]
 class AdminAllergieController extends AbstractController
 {
-    #[Route('/', name: 'app_allergie_index', methods: ['GET'])]
-    public function index(AllergieRepository $allergieRepository): Response
+    private $paginationService;
+
+    public function __construct(PaginationService $paginationService)
     {
+        $this->paginationService = $paginationService;
+    }
+    #[Route('/', name: 'app_allergie_index', methods: ['GET'])]
+    public function index(AllergieRepository $allergieRepository, Request $request): Response
+    {
+        $pageSize = 7;
+        $results = $allergieRepository->createQueryBuilder('a')
+            ->orderBy('a.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        $pagination = $this->paginationService->paginate(
+            $results,
+            $request->query->getInt('page', 1),
+            $pageSize
+        );
         return $this->render('admin/admin_allergie/index.html.twig', [
             'allergies' => $allergieRepository->findAll(),
+            'pagination' => $pagination,
+
         ]);
     }
 
