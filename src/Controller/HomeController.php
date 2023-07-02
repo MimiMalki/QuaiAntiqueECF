@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ImagesRepository;
 use App\Service\PaginationService;
+#[Route('/home')]
 class HomeController extends AbstractController
 {
     private $paginationService;
@@ -23,7 +24,7 @@ class HomeController extends AbstractController
     //         'controller_name' => 'HomeController',
     //     ]);
     // }
-    #[Route('/home', name: 'homepage')]
+    #[Route('/', name: 'homepage')]
     public function galerie(ImagesRepository $imagesRepository, Request $request): Response
     {
         $pageSize = 12;
