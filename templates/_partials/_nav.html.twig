@@ -12,7 +12,7 @@
 					{{ app.user.lastname }}</span>
 			</li>
 		{% endif %}
-		<li class="nav-item {{ app.request.get('_route') == 'accueil' ? 'active' : '' }}">
+		<li class="nav-item {{ app.request.get('_route') == 'home' ? 'active' : '' }}">
 			<a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
 		</li>
 		<li class="nav-item {{ app.request.get('_route') == 'app_category_index' ? 'active' : '' }}">
