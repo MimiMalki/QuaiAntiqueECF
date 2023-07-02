@@ -16,13 +16,13 @@ class HomeController extends AbstractController
     {
         $this->paginationService = $paginationService;
     }
-    #[Route('/home', name: 'homepage')]
-    public function index(): Response
-    {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
+    // #[Route('/home', name: 'homepage')]
+    // public function index(): Response
+    // {
+    //     return $this->render('home/index.html.twig', [
+    //         'controller_name' => 'HomeController',
+    //     ]);
+    // }
     #[Route('/home', name: 'homepage')]
     public function galerie(ImagesRepository $imagesRepository, Request $request): Response
     {
@@ -38,23 +38,9 @@ class HomeController extends AbstractController
             $pageSize
         );
         return $this->render('home/index.html.twig', [
+            'controller_name' => 'HomeController',
             'images' => $imagesRepository->findAll(),
             'pagination' => $pagination,
         ]);
     }
-    // public function index(ManagerRegistry $doctrine,PlatRepository $platRepository): Response
-    // {
-
-    //      // Entity Manager de Symfony
-    //     $entityManager = $doctrine->getManager();
-    //     $platRepository = $entityManager->getRepository(Plat::class);
-    //      // On récupère tous les articles disponibles en base de données
-    //     $plats   = $platRepository->findAll();
-    //     return $this->render('home/index.html.twig', [
-    //         'controller_name' => 'HomeController',
-    //         'plats'  => $plats
-    //     ]);
-
-    // }
-
 }
