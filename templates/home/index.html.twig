@@ -40,7 +40,7 @@
 		<div class="container">
 			<div class="row ">
 				<div class=" col card shadow-sm hover py-3 ">
-					{% for image in pagination %}
+					{% for image in images %}
 						<figure class="figure-hover ">
 							<img src="{{ vich_uploader_asset(image, 'file') }}" alt="{{ image.fileName }}" class=" card shadow-sm"/>
 							<figcaption class="figcaption">{{ image.name }}</figcaption>

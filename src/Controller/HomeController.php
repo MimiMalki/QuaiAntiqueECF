@@ -5,17 +5,17 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
+// use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ImagesRepository;
-use App\Service\PaginationService;
+// use App\Service\PaginationService;
 class HomeController extends AbstractController
 {
-    private $paginationService;
+    // private $paginationService;
 
-    public function __construct(PaginationService $paginationService)
-    {
-        $this->paginationService = $paginationService;
-    }
+    // public function __construct(PaginationService $paginationService)
+    // {
+    //     $this->paginationService = $paginationService;
+    // }
     // #[Route('/home', name: 'homepage')]
     // public function index(): Response
     // {
@@ -24,23 +24,23 @@ class HomeController extends AbstractController
     //     ]);
     // }
     #[Route('/home', name: 'homepage')]
-    public function galerie(ImagesRepository $imagesRepository, Request $request): Response
+    public function galerie(ImagesRepository $imagesRepository): Response
     {
-        $pageSize = 12;
-        $results = $imagesRepository->createQueryBuilder('a')
-            ->orderBy('a.id', 'ASC')
-            ->getQuery()
-            ->getResult();
+        // $pageSize = 12;
+        // $results = $imagesRepository->createQueryBuilder('a')
+        //     ->orderBy('a.id', 'ASC')
+        //     ->getQuery()
+        //     ->getResult();
 
-        $pagination = $this->paginationService->paginate(
-            $results,
-            $request->query->getInt('page', 1),
-            $pageSize
-        );
+        // $pagination = $this->paginationService->paginate(
+        //     $results,
+        //     $request->query->getInt('page', 1),
+        //     $pageSize
+        // );
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'images' => $imagesRepository->findAll(),
-            'pagination' => $pagination,
+            // 'pagination' => $pagination,
         ]);
     }
 }
