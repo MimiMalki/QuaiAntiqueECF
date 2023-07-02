@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('assets/css/styleHome.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/styleHome.css') }}?v={{ random() }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/styleUser.css') }}">
 {% endblock %}
 
@@ -40,7 +40,7 @@
 		<div class="container">
 			<div class="row ">
 				<div class=" col card shadow-sm hover py-3 ">
-					{% for image in images %}
+					{% for image in pagination %}
 						<figure class="figure-hover ">
 							<img src="{{ vich_uploader_asset(image, 'file') }}" alt="{{ image.fileName }}" class=" card shadow-sm"/>
 							<figcaption class="figcaption">{{ image.name }}</figcaption>
