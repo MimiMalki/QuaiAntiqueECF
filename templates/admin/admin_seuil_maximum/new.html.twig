@@ -1,0 +1,18 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}
+	Admin ajouter SeuilMaximum  |Quai Antique</title>{% endblock %}{% block body %}
+{% include "admin/_partials/_cards.html.twig" %}
+
+<div class="detailss">
+	<div class="recentOrders card">
+		<div class="cardHeader">
+			<h2>
+				<strong>Nombre des places maximum</strong>
+			</h2>
+			{# <a href="{{ path('app_admin_category_index') }}" class="btn">Liste des categories</a> #}
+		</div>
+		{{ include('admin/admin_seuil_maximum/_form.html.twig') }}
+
+		{# <a href="{{ path('app_admin_seuil_maximum_index') }}">back to list</a> #}
+	{% endblock %}

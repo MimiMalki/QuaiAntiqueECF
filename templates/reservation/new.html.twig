@@ -6,9 +6,53 @@
 <link rel="stylesheet" href="{{ asset('assets/css/styleUser.css') }}">
 {% endblock %}
 {% block body %}
+<style>
+    /* .alert-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    } */
+
+    .alert-message {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        text-align: center;
+        
+        
+    }
+
+    
+</style>
 <main class="form-signin card shadow-sm  ">
   <h1 class="h3 mb-3 fw-normal title text-center ">Réservation</h1>
+  {% for flashMessage in app.flashes('error') %}
+    <div class="alert-container">
+        <div class="alert-message">
+            {{ flashMessage }}
+        </div>
+    </div>
+{% endfor %}
+{% if app.request.get('reservationSuccess') %}
+    <div class="alert alert-success">
+        Votre réservation a été enregistrée avec succès. Veuillez vous connecter pour voir les détails.
+    </div>
+{% endif %}
     {{ include('reservation/_form.html.twig') }}
 </main>
+
+{# script pour l'alerte  #}
+<script>
+        // window.addEventListener('DOMContentLoaded', (event) => {
+        //     var errorMessage = "{{ app.session.flashBag.get('error')|first }}";
+        //     if (errorMessage) {
+        //         alert(errorMessage);
+        //     }
+        // });
+    </script>
 {% endblock %}
 

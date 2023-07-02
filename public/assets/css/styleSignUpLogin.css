@@ -1,10 +1,10 @@
 
 .form-signin{
-    margin-top: 11%;
+    margin-top: 3%;
     padding-top: 2%;
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 25%;
+    width: 60%;
+    margin-left: 20%;
+    /* margin-right: 15%; */
 }
 .btn{
     background:  var(--yellow);
@@ -44,4 +44,33 @@ form {
 }
 h6 .lien{
     color:var(--yellow);
+}
+
+@media screen and (max-width: 320px) {
+    .form-signin{
+        width: 90%;
+        margin-left: 5%;
+    margin-right: 5%;
+    }
+    .title{
+        font-size: 35px;
+    }
+}
+@media screen and (max-width: 425px) {
+    .form-signin{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .title{
+        font-size: 35px;
+    }
+}
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .form-signin{
+        margin-top: 5%;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
 }

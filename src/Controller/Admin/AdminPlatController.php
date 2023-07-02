@@ -9,15 +9,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\PaginationService;
+
 
 #[Route('/admin/plat')]
 class AdminPlatController extends AbstractController
 {
-    #[Route('/', name: 'app_admin_plat_index', methods: ['GET'])]
-    public function index(PlatRepository $platRepository): Response
+    private $paginationService;
+
+    public function __construct(PaginationService $paginationService)
     {
+        $this->paginationService = $paginationService;
+    }
+    #[Route('/', name: 'app_admin_plat_index', methods: ['GET'])]
+    public function index(PlatRepository $platRepository, Request $request): Response
+    {
+        $pageSize = 5;
+        $results = $platRepository->createQueryBuilder('a')
+            ->orderBy('a.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        $pagination = $this->paginationService->paginate(
+            $results,
+            $request->query->getInt('page', 1),
+            $pageSize
+        );
         return $this->render('admin/admin_plat/index.html.twig', [
             'plats' => $platRepository->findAll(),
+            'pagination' => $pagination,
+
         ]);
     }
 

@@ -1,0 +1,19 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Admin ModifierSeuilMaximum  |Quai Antique</title>{% endblock %}{% block body %}
+{% include "admin/_partials/_cards.html.twig" %}
+<div class="detailss">
+	<div class="recentOrders card">
+		<div class="cardHeader">
+			<h2>
+				<strong>Modifier le nombre de place maximum</strong>
+			</h2>
+			{# {{ include('admin/admin_seuil_maximum/_delete_form.html.twig') }} #}
+		</div>
+
+		{{ include('admin/admin_seuil_maximum/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+	{# <a href="{{ path('app_admin_seuil_maximum_index') }}">back to list</a> #}
+
+		{# {{ include('admin/admin_seuil_maximum/_delete_form.html.twig') }} #}
+	{% endblock %}

@@ -5,51 +5,51 @@
 {% endblock %}
 
 {% block body %}
-{% include "admin/_partials/_cards.html.twig" %}
-<div class="detailss">
-	<div class="recentOrders card">
-		<div class="cardHeader">
-			<h2>
-				<strong>les Allergies
-				</strong>
-			</h2>
-			<a href="{{ path('app_allergie_new') }}" class="btn"><ion-icon name="add-outline"></ion-icon>Ajouter une allergie</a>
-		</div>
+	{% include "admin/_partials/_cards.html.twig" %}
+	<div class="detailss">
+		<div class="recentOrders card">
+			<div class="cardHeader">
+				<h2>
+					<strong>Les allergies
+					</strong>
+				</h2>
+				<a href="{{ path('app_allergie_new') }}" class="btn">
+					<ion-icon name="add-outline"></ion-icon>Ajouter une allergie</a>
+			</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom de l'allergie</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for allergie in allergies %}
-            <tr>
-                <td>{{ allergie.id }}</td>
-                <td>{{ allergie.name }}</td>
-                <td>
-							<button class="btn">
-								<a href="{{ path('app_allergie_show', {'id': allergie.id}) }}">
-									<ion-icon name="eye-outline" class="iconBx"></ion-icon>
-								</a>
-							</button>
-							<button class="btn">
-								<a href="{{ path('app_allergie_edit', {'id': allergie.id}) }}">
-									<ion-icon name="pencil" class="iconBx"></ion-icon>
-								</a>
-							</button>
-							<button class="btn">{{ include('admin/admin_allergie/_delete_form.html.twig') }}</button>
-						</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-   
-{% endblock %}
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nom de l'allergie</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for allergie in pagination %}
+						<tr>
+							<td>{{ allergie.id }}</td>
+							<td>{{ allergie.name }}</td>
+							<td>
+								<button class="btn">
+									<a href="{{ path('app_allergie_show', {'id': allergie.id}) }}">
+										<ion-icon name="eye-outline" class="iconBx"></ion-icon>
+									</a>
+								</button>
+								<button class="btn">
+									<a href="{{ path('app_allergie_edit', {'id': allergie.id}) }}">
+										<ion-icon name="pencil" class="iconBx"></ion-icon>
+									</a>
+								</button>
+								<button class="btn">{{ include('admin/admin_allergie/_delete_form.html.twig') }}</button>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% include "admin/_partials/_pagination.html.twig" %}
+		{% endblock %}

@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+    <div>
+	{{ form_label(form.nbrSeatMax,'Nombre de places maximum') }}
+	{{ form_widget(form.nbrSeatMax) }}
+</div>
+<br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+	<button class="btn btn-dark "><ion-icon name="create"></ion-icon>{{ button_label|default('Ajouter') }}</button>
+    </div>
+{{ form_end(form) }}

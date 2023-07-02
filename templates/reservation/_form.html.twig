@@ -1,9 +1,21 @@
- {{ form_start(form) }}
-  {# <h1 class="h3 mb-3 fw-normal title text-center ">Réservation</h1> #}
-    {{ form_widget(form) }}
-{# {% for allergy in allergies %}
-    <input type="checkbox" name="allergies[]" value="{{ allergy.id }}">
-    {{ allergy.name }}
-{% endfor %} #}
-<button class="w-100 btn btn-lg">{{ button_label|default('Réserver') }}</button>
+{{ form_start(form ,{'attr': {'novalidate': 'novalidate' }}) }}
+{% for flashMessage in app.flashes('error') %}
+	<div class="alert-container">
+		<div class="alert-message">
+			{{ flashMessage }}
+		</div>
+	</div>
+{% endfor %}
+{{ form_widget(form) }}
+<button class="w-100 btn btn-lg">
+	{{ button_label|default('Réserver') }}</button>
 {{ form_end(form) }}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('assets/css/styleReservation.css') }}">
+{% endblock %}
+
+{% block scripts %}
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="{{ asset('assets/js/plageHoraire.js') }}" defer></script>
+{% endblock %}

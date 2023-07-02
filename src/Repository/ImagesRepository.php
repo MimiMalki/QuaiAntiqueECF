@@ -20,7 +20,17 @@ class ImagesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Images::class);
     }
+    public function getImageFileNames()
+    {
+        $images = $this->findAll();
+        $fileNames = [];
 
+        foreach ($images as $image) {
+            $fileNames[$image->getName()] = $image->getFileName();
+        }
+
+        return $fileNames;
+    }
     public function save(Images $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

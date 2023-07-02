@@ -14,32 +14,31 @@
 					<strong>
 						Images de galerie</strong>
 				</h2>
-				<a href="{{ path('app_images_new') }}" class="btn"><ion-icon name="add-outline"></ion-icon>Ajouter une image</a>
+				<a href="{{ path('app_images_new') }}" class="btn">
+					<ion-icon name="add-outline"></ion-icon>Ajouter une image</a>
 			</div>
-            <br>
+			<br>
 
 			<table class="table">
 				<thead>
 					<tr>
 						<th>Id</th>
 						<th>Name</th>
-						<th>FileName</th>
-						<th>File</th>
-						<th>UpdatedAt</th>
+						<th>Nom du fichier image</th>
+						<th>Image</th>
 						<th>actions</th>
 					</tr>
 				</thead>
 				<tbody>
-			
-					{% for image in images %}
+
+					{% for image in pagination %}
 						<tr>
 							<td>{{ image.id }}</td>
 							<td>{{ image.name }}</td>
 							<td>{{ image.fileName }}</td>
 							<td><img src="{{ vich_uploader_asset(image, 'file') }}" alt="{{ image.fileName }}" width="80px 50px"></td>
-							<td>{{ image.updatedAt ? image.updatedAt|date('Y-m-d H:i') : '' }}</td>
 							<td>
-                            <button class="btn">
+								<button class="btn">
 									<a href="{{ path('app_images_show' , {'id': image.id}) }}">
 										<ion-icon name="eye-sharp" class="iconBx"></ion-icon>
 									</a>
@@ -50,7 +49,7 @@
 									</a>
 								</button>
 
-							<button class="btn">{{ include('admin/admin_images/_delete_form.html.twig') }}</button>
+								<button class="btn">{{ include('admin/admin_images/_delete_form.html.twig') }}</button>
 							</td>
 						</tr>
 					{% else %}
@@ -60,6 +59,7 @@
 					{% endfor %}
 				</tbody>
 			</table>
+			{% include "admin/_partials/_pagination.html.twig" %}
 		</div>
 	</div>
 {% endblock %}
