@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
-
+use Symfony\Component\Validator\Constraints as Assert;
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -32,7 +32,11 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre nom',
-                    ])
+                    ]),
+                    new Assert\Regex([
+                        'pattern' => '/^[a-zA-Z\s]+$/',
+                        'message' => 'Le nom ne doit contenir que des lettres',
+                    ]),
                 ],
             ])
             ->add('firstname', TextType::class, [
@@ -41,7 +45,11 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre prénom',
-                    ])
+                    ]),
+                    new Assert\Regex([
+                        'pattern' => '/^[a-zA-Z\s]+$/',
+                        'message' => 'Le prénom ne doit contenir que des lettres',
+                    ]),
                 ],
             ])
             ->add('email', EmailType::class, [

@@ -96,8 +96,8 @@ class ReservationType extends AbstractType
                         'message' => 'Le nombre de convives doit être un nombre positif et supérieur à zéro.'
                     ]),
                     new Assert\LessThanOrEqual([
-                        'value' => 50,
-                        'message' => 'Le nombre de convives doit être inférieur ou égal à 50.'
+                        'value' => $maxValue,
+                        'message' => 'Le nombre de convives doit être inférieur ou égal à '.$maxValue
                     ]),
                 ],
             ])
